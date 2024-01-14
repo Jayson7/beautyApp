@@ -3,5 +3,9 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
     "@babel/preset-react": "^7.23.3"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17"
   }
 }
