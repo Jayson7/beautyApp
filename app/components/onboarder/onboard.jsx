@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-const Onboard = () => {
+const Onboard = (navigation) => {
   //
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
@@ -38,15 +38,20 @@ const Onboard = () => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.welcome}>Welcome Back!</Text>
-      </View>
       <Image
         style={styles.Logo}
         source={{
           uri: "https://res.cloudinary.com/jaytech/image/upload/v1704910436/Beauty_App_prwcqb.png",
         }}
       />
+      <View style={styles.intro}>
+        <Text style={styles.welcome}>Welcome Back!</Text>
+        <Text style={styles.welcomeMini}>
+          Unlock your beauty journey with Beauty App. Sign in to discover
+          personalized tips, exclusive deals, and a world of radiant
+          possibilities.
+        </Text>
+      </View>
       <View>
         {/* ########################################### */}
         {/* button 1 */}
@@ -63,7 +68,7 @@ const Onboard = () => {
         {/* ########################################### */}
         {/* button 2 */}
         <TouchableHighlight
-          onPress={() => console.log("Button Pressed!")}
+          onPress={() => navigation.navigate("login")}
           onPressIn={handlePressIn2}
           onPressOut={handlePressOut2}
           underlayColor="transparent" // Disable default underlay color
@@ -78,16 +83,30 @@ const Onboard = () => {
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    resizeMode: "cover", // You can use 'contain' or 'stretch' as well
+  },
   container: {
     height: "100%",
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#02010A",
   },
+  intro: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   welcome: {
     color: "wheat",
     fontSize: 25,
     fontWeight: "bold",
+  },
+  welcomeMini: {
+    color: "white",
+    width: 350,
+    marginTop: 20,
+    textAlign: "center",
+    // fontFamily: "",
   },
   Logo: {
     width: 250,
@@ -120,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   buttonHovered2: {
-    backgroundColor: "#140152",
+    backgroundColor: "#0D00A4",
   },
   buttonText2: {
     color: "#fff",
