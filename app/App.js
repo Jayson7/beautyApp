@@ -1,21 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import { View } from "react-native";
+import Onboard from "./components/onboarder/onboard";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello Jayson</Text>
+    <View>
       <StatusBar style="auto" />
+      <Onboard />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#034556",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-  },
-});
