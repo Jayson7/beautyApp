@@ -6,8 +6,10 @@ import {
   TouchableHighlight,
 } from "react-native";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-const Onboard = (navigation) => {
+const Onboard = () => {
+  const navigation = useNavigation();
   //
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
@@ -56,7 +58,7 @@ const Onboard = (navigation) => {
         {/* ########################################### */}
         {/* button 1 */}
         <TouchableHighlight
-          onPress={() => console.log("Button Pressed!")}
+          onPress={() => navigation.navigate("register")}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
           underlayColor="transparent" // Disable default underlay color
