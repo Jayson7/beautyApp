@@ -23,6 +23,10 @@ export default function Login() {
 
   return (
     <ImageBackground source={image} style={styles.container}>
+      {/* ########  logo section */}
+      <View style={styles.logoLogin}></View>
+
+      {/* ends */}
       <View style={styles.containerContent}>
         <Text style={styles.heading}>Login</Text>
         <TextInput
@@ -43,12 +47,14 @@ export default function Login() {
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <View style={styles.userExist}>
-          <Text style={styles.loginText}>
-            Already have an account? Log in here
-          </Text>
-        </View>
       </View>
+      {/* #################### user exist */}
+      <View style={styles.userExist}>
+        <Text style={styles.loginText}>
+          Already have an account? Log in here
+        </Text>
+      </View>
+      {/* ends */}
     </ImageBackground>
   );
 }
@@ -93,5 +99,16 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textAlign: "center",
+  },
+  userExist: {
+    height: 120,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#000",
+  },
+  loginText: {
+    color: "white",
+    marginBottom: 50,
   },
 });
