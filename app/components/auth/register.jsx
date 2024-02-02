@@ -101,12 +101,12 @@ export default function Login() {
       </View>
       {/* #################### user exist */}
       <View style={styles.userExist}>
-        <Text style={styles.loginText}>Dont have an account?</Text>
+        <Text style={styles.loginText}>Already have an account?</Text>
         <TouchableOpacity
           style={styles.signupTextContainer}
-          onPress={() => navigation.navigate("register")}
+          onPress={() => navigation.navigate("login")}
         >
-          <Text style={styles.signupText}>Sign up</Text>
+          <Text style={styles.signupText}>Sign in</Text>
         </TouchableOpacity>
       </View>
       {/* ends */}
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    backgroundColor: "#3498db",
+    backgroundColor: "#bd6513",
     padding: 10,
     borderRadius: 5,
     width: "50%",
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   signupText: {
-    color: "#fff",
+    color: "#bd6513",
   },
   signupTextContainer: {
     marginBottom: 70,

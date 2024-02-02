@@ -5,15 +5,38 @@ import {
   View,
   TouchableHighlight,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 
+//
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+//
 const Onboard = () => {
+  //
+  const [showWelcome, setShowWelcome] = useState(true);
+  //
   const navigation = useNavigation();
   //
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
 
+  // ###################################
+
+  useEffect(() => {
+    // Check if the app has been launched before
+    AsyncStorage.getItem("appLaunchedBefore").then((value) => {
+      if (value !== null) {
+        navigation.navigate("login");
+        setShowWelcome(false);
+      } else {
+        // App is launched for the first time, set the flag in AsyncStorage
+        AsyncStorage.setItem("appLaunchedBefore", "true");
+      }
+    });
+  }, []);
+
+  // ###################################
   const handlePressIn = () => {
     setIsHovered(true);
   };
@@ -124,7 +147,7 @@ const styles = StyleSheet.create({
   },
 
   buttonHovered: {
-    backgroundColor: "#22007C",
+    backgroundColor: "#bd6513",
   },
   buttonText: {
     color: "#fff",
@@ -133,7 +156,7 @@ const styles = StyleSheet.create({
   },
   // button2
   button2: {
-    backgroundColor: "#22007C",
+    backgroundColor: "#bd6513",
     padding: 10,
     borderRadius: 10,
     width: 300,
