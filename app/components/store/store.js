@@ -1,6 +1,6 @@
 // store.js
 import { createStore } from "redux";
-import rootReducer from "./reducers"; // Your root reducer
+import rootReducer from "../reducers/combine/combineReducers"; // Your root reducer
 
 const store = createStore(rootReducer);
 
