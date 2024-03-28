@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
@@ -39,6 +40,10 @@ export default function Login() {
         />
         {/* ends */}
         <Text style={styles.heading}>Login</Text>
+        <Text style={styles.introText}>
+          Enhance your beauty collection with our curated selection of premium
+          skincare essentials and glamorous makeup.
+        </Text>
         {/* Username input with icon */}
         <View style={styles.inputContainer}>
           <Icon name="user" size={20} color="gold" style={styles.icon} />
@@ -96,9 +101,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.6)",
   },
-
+  introText: {
+    color: "#fff",
+    width: "70%",
+    textAlign: "center",
+    marginBottom: 40,
+    fontSize: 12,
+  },
   heading: {
-    fontSize: 24,
+    fontSize: 34,
     marginBottom: 20,
     color: "#fff",
     marginBottom: 30,

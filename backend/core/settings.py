@@ -5,10 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-_fzf=d4qu_rj6^s=#u2eivzqrp3pufur)cnyorc09i+$hd+$w*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -16,6 +13,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# remove slash
+APPEND_SLASH=True
 
 # Application definition
 
@@ -30,6 +29,7 @@ INSTALLED_APPS = [
     'mainapp',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist'
 ]
 
@@ -140,3 +140,14 @@ SIMPLE_JWT = {
      'ROTATE_REFRESH_TOKENS': True,
      'BLACKLIST_AFTER_ROTATION': True
 }
+
+
+# configure login
+
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/login/'
+
+
+# cors config 
+CORS_ALLOW_ALL_ORIGINS = True
+
