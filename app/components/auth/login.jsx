@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import {
   ImageBackground,
   StyleSheet,
@@ -15,16 +17,33 @@ import { useNavigation } from "@react-navigation/native";
 //
 const image = require("../../assets/2.jpg");
 //
+
+const baseURL = "127.0.0.1:8000/";
+//
 export default function Login() {
   const navigation = useNavigation();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    // Add your authentication logic here
-    console.log("Login button pressed");
-    console.log("Username:", username);
-    console.log("Password:", password);
+  const handleLogin = async () => {
+    try {
+      // Make a POST request to the login endpoint
+      const response = await axios.post(baseURL / "login/", {
+        username: username,
+        password: password,
+      });
+
+      // Handle successful login (e.g., store user token, navigate to next screen)
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      // Handle login error
+      console.error("Login error:", error);
+      Alert.alert(
+        "Error",
+        "Failed to log in. Please check your credentials and try again."
+      );
+    }
   };
 
   return (
