@@ -9,6 +9,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -18,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 const image = require("../../assets/2.jpg");
 //
 
-const baseURL = "127.0.0.1:8000/";
+const baseURL = "localhost:8000/login";
 //
 export default function Login() {
   const navigation = useNavigation();
@@ -29,7 +30,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       // Make a POST request to the login endpoint
-      const response = await axios.post(baseURL / "login/", {
+      const response = await axios.post(baseURL, {
         username: username,
         password: password,
       });
