@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 const image = require("../../assets/2.jpg");
 //
 
-const baseURL = "localhost:8000/login";
+const baseURL = "";
 //
 export default function Login() {
   const navigation = useNavigation();
@@ -27,23 +27,34 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
+  const Handlelogin = async (username, password) => {
     try {
-      // Make a POST request to the login endpoint
-      const response = await axios.post(baseURL, {
-        username: username,
-        password: password,
-      });
-
-      // Handle successful login (e.g., store user token, navigate to next screen)
-      console.log("Login successful:", response.data);
-    } catch (error) {
-      // Handle login error
-      console.error("Login error:", error);
-      Alert.alert(
-        "Error",
-        "Failed to log in. Please check your credentials and try again."
+      // Get CSRF token from Django server
+      const csrfTokenResponse = await axios.get(
+        "http://10.0.2.2:8000/csrf_cookie/"
       );
+      const csrfToken = csrfTokenResponse.headers["set-cookie"];
+
+      // Make login request with CSRF token included in headers
+      const response = await axios.post(
+        "http://10.0.2.2:8000/login/",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          headers: {
+            "X-CSRFToken": csrfToken, // Include CSRF token in headers
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Login successful:", response.data);
+      // Handle successful login response
+    } catch (error) {
+      console.error("Login error:", error);
+      // Handle login error
     }
   };
 

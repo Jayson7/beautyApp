@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-_fzf=d4qu_rj6^s=#u2eivzqrp3pufur)cnyorc09i+$hd+$w*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2']
 
 # remove slash
 APPEND_SLASH=True
@@ -25,9 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'authentications',
     'mainapp',
-    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist'
@@ -127,8 +127,6 @@ REST_FRAMEWORK = {
 }
 
 
-#  CORS CONFIG
-CORS_ORIGIN_ALLOW_ALL = True
 
 # SIMPLE JWT
 
@@ -141,13 +139,11 @@ SIMPLE_JWT = {
      'BLACKLIST_AFTER_ROTATION': True
 }
 
-
-# configure login
-
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/login/'
-
+CORS_ORIGIN_WHITELIST = [
+    'http://10.0.2.2:8081',
+]
 
 # cors config 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ORIGIN_ALLOW = True
