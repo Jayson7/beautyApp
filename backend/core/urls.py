@@ -8,5 +8,6 @@ urlpatterns = [
     path('', include('rest_framework.urls')),
     path('', include('mainapp.urls')),
     path('', include('authentications.urls')),
+
     
 ]

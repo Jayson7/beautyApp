@@ -27,28 +27,12 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const Handlelogin = async (username, password) => {
+  const handleLogin = async (username, password) => {
     try {
-      // Get CSRF token from Django server
-      const csrfTokenResponse = await axios.get(
-        "http://10.0.2.2:8000/csrf_cookie/"
-      );
-      const csrfToken = csrfTokenResponse.headers["set-cookie"];
-
-      // Make login request with CSRF token included in headers
-      const response = await axios.post(
-        "http://10.0.2.2:8000/login/",
-        {
-          username: username,
-          password: password,
-        },
-        {
-          headers: {
-            "X-CSRFToken": csrfToken, // Include CSRF token in headers
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("http://10.0.2.2:8000/login/", {
+        username: username,
+        password: password,
+      });
 
       console.log("Login successful:", response.data);
       // Handle successful login response
