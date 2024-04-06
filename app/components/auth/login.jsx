@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setAuthData } from "../actions/action";
+import { setAuthData, resetState } from "../actions/action";
 
 import {
   ImageBackground,
@@ -28,7 +28,16 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  //  reset all stores and data once the app starts
+  useEffect(() => {
+    // Dispatch the reset action when the app starts
+    dispatch(resetState());
+  }, []);
+
+  // handle all login attempts on the application
   const handleLogin = () => {
+    dispatch(resetState());
+
     console.log("Username:", username);
     console.log("Password:", password);
 

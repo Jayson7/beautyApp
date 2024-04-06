@@ -9,7 +9,7 @@ const initialState = {
   // Add other state variables as needed
 };
 
-const reducer = (state = initialState, action) => {
+const ResetReducer = (state = initialState, action) => {
   switch (action.type) {
     case RESET_STATE:
       return initialState;
@@ -19,4 +19,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default ResetReducer;
