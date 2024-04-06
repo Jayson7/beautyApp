@@ -12,6 +12,8 @@ import {
   Alert,
 } from "react-native";
 
+//
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
@@ -27,19 +29,27 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (username, password) => {
-    try {
-      const response = await axios.post("http://10.0.2.2:8000/login/", {
+  const handleLogin = () => {
+    console.log("Username:", username);
+    console.log("Password:", password);
+
+    axios
+      .post("http://10.0.2.2:8000/signin/", {
         username: username,
         password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        Alert.alert(
+          "Login successful",
+          "Welcome to the app!",
+          [{ text: "OK", onPress: () => navigation.navigate("home") }],
+          { cancelable: false }
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-
-      console.log("Login successful:", response.data);
-      // Handle successful login response
-    } catch (error) {
-      console.error("Login error:", error);
-      // Handle login error
-    }
   };
 
   return (
