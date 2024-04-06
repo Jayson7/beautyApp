@@ -1,15 +1,20 @@
-// reducers/authReducer.js
+// reducers.js
 const initialState = {
-  user: null,
+  refreshToken: null,
+  token: null,
+  username: null,
+  password: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN_SUCCESS":
-    case "REGISTER_SUCCESS":
+    case "SET_AUTH_DATA":
       return {
         ...state,
-        user: action.payload,
+        refreshToken: action.payload.refreshToken,
+        token: action.payload.token,
+        username: action.payload.username,
+        password: action.payload.password,
       };
     default:
       return state;

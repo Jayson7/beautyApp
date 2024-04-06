@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthData } from "../actions/action";
 
 import {
   ImageBackground,
@@ -17,14 +19,11 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
-//
 const image = require("../../assets/2.jpg");
-//
 
-const baseURL = "";
-//
 export default function Login() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +38,8 @@ export default function Login() {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
+        const { refreshToken, token } = response.data;
+        dispatch(setAuthData(refreshToken, token, username, password));
         Alert.alert(
           "Login successful",
           "Welcome to the app!",
@@ -51,7 +51,6 @@ export default function Login() {
         console.log(error);
       });
   };
-
   return (
     <ImageBackground source={image} style={styles.container}>
       <View style={styles.containerContent}>
