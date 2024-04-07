@@ -10,6 +10,7 @@ import store from "./components/store/store";
 import Login from "./components/auth/login";
 import Onboard from "./components/onboarder/onboard";
 import Register from "./components/auth/register";
+import HomeScreen from "./components/homeApp/homeScreen";
 
 // ################################### config ##############3
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
           />
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="register" component={Register} />
+          <Stack.Screen name="home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
