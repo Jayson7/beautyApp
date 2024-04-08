@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 //
 const image = require("../../assets/2.jpg");
 //
-export default function Login() {
+export default function Register() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

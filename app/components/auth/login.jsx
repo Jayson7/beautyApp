@@ -36,8 +36,6 @@ export default function Login() {
 
   // handle all login attempts on the application
   const handleLogin = () => {
-    dispatch(resetState());
-
     console.log("Username:", username);
     console.log("Password:", password);
 
@@ -47,8 +45,9 @@ export default function Login() {
         password: password,
       })
       .then(function (response) {
-        const { refreshToken, token } = response.data;
-        dispatch(setAuthData(refreshToken, token, username, password));
+        const { refresh, access } = response.data;
+        console.log("the resonse i got \n", response.data, "\n");
+        dispatch(setAuthData(refresh, access, username, password));
         Alert.alert(
           "Login successful",
           "Welcome to the app!",
