@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
@@ -23,14 +24,9 @@ export default function Register() {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     // Add your authentication logic here
-    console.log("Login button pressed");
-    console.log("Username:", username);
-    console.log("Password:", password);
-    console.log("Password:", password);
-    console.log("Password:", password);
-    console.log("Password:", password);
+    console.log("Submit button pressed");
   };
 
   return (
@@ -53,8 +49,8 @@ export default function Register() {
             style={styles.input}
             placeholder="Full name"
             placeholderTextColor="gold"
-            onChangeText={(text) => setUsername(text)}
-            value={username}
+            onChangeText={(text) => setFull_name(text)}
+            value={full_name}
           />
         </View>
         {/* Password input with icon */}
@@ -65,7 +61,7 @@ export default function Register() {
             placeholder="Country"
             placeholderTextColor="gold"
             onChangeText={(text) => setCountry(text)}
-            value={password}
+            value={country}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -82,36 +78,35 @@ export default function Register() {
           <Icon name="lock" size={20} color="gold" style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder=""
+            placeholder="Email"
             placeholderTextColor="gold"
             secureTextEntry
-            onChangeText={(text) => setPassword(text)}
-            value={password}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
           />
         </View>
+
         <View style={styles.inputContainer}>
           <Icon name="lock" size={20} color="gold" style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder=""
+            placeholder="Password"
             placeholderTextColor="gold"
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
             value={password}
           />
         </View>
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+
+        <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
       {/* #################### user exist */}
       <View style={styles.userExist}>
         <Text style={styles.loginText}>Already have an account?</Text>
-        <TouchableOpacity
-          style={styles.signupTextContainer}
-          onPress={() => navigation.navigate("login")}
-        >
-          <Text style={styles.signupText}>Sign in</Text>
+        <TouchableOpacity style={styles.signupTextContainer}>
+          <Text style={styles.signupText}>Sign up</Text>
         </TouchableOpacity>
       </View>
       {/* ends */}
