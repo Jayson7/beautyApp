@@ -12,17 +12,24 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
 //
-const image = require("../../assets/2.jpg");
+const image = require("../../assets/3.jpg");
 //
 export default function Register() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [phone_number, setPhone] = useState("");
+  const [full_name, setFull_name] = useState("");
+  const [country, setCountry] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleLogin = () => {
     // Add your authentication logic here
     console.log("Login button pressed");
     console.log("Username:", username);
+    console.log("Password:", password);
+    console.log("Password:", password);
+    console.log("Password:", password);
     console.log("Password:", password);
   };
 
@@ -44,7 +51,7 @@ export default function Register() {
           <Icon name="user" size={20} color="gold" style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Full name"
             placeholderTextColor="gold"
             onChangeText={(text) => setUsername(text)}
             value={username}
@@ -55,7 +62,27 @@ export default function Register() {
           <Icon name="lock" size={20} color="gold" style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder="Password"
+            placeholder="Country"
+            placeholderTextColor="gold"
+            onChangeText={(text) => setCountry(text)}
+            value={password}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Icon name="lock" size={20} color="gold" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Phone number"
+            placeholderTextColor="gold"
+            onChangeText={(text) => setPhone(text)}
+            value={phone_number}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Icon name="lock" size={20} color="gold" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder=""
             placeholderTextColor="gold"
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
@@ -66,29 +93,7 @@ export default function Register() {
           <Icon name="lock" size={20} color="gold" style={styles.icon} />
           <TextInput
             style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="gold"
-            secureTextEntry
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="gold"
-            secureTextEntry
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
+            placeholder=""
             placeholderTextColor="gold"
             secureTextEntry
             onChangeText={(text) => setPassword(text)}
