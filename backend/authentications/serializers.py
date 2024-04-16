@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from .models import *
-from django.contrib.auth.models import User
+
 
 # ######################################################
+
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -16,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
             # Extract the password from the validated data
             password = validated_data.pop('password')
             # Create a new user instance
-            user = User.objects.create_user(**validated_data, password=password)
+            user = User.objects.create_user(password=password, **validated_data)
             return user
         except Exception as e:
             # Handle any exceptions that might occur during user creation

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-native-paper";
+import axios from "axios";
 import {
   ImageBackground,
   StyleSheet,
@@ -9,6 +10,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
@@ -31,11 +33,11 @@ export default function Register() {
     console.log(username, full_name, country, email, phone_number);
     axios
       .post("http://10.0.2.2:8000/signup/", {
-        username,
-        email,
-        password,
-        full_name,
-        phone_number,
+        username: username,
+        email: email,
+        password: password,
+        full_name: full_name,
+        phone_number: phone_number,
       })
       .then((response) => {
         // Handle successful sign-up
