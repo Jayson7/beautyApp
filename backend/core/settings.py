@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist'
     'authentications',
     'mainapp',
 ]
@@ -147,3 +146,8 @@ CORS_ORIGIN_WHITELIST = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_ALLOW = True
+
+
+# auth configuration because of abstractuser usage 
+
+AUTH_USER_MODEL="authentications.User"
