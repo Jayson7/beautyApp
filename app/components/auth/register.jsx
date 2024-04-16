@@ -27,7 +27,7 @@ export default function Register() {
   const handleRegister = () => {
     // Add your authentication logic here
     console.log("Submit button pressed");
-    // console.log(usrname, full_name, country);
+    console.log(username, full_name, country, email, phone_number);
   };
 
   return (
@@ -71,6 +71,7 @@ export default function Register() {
             style={styles.input}
             placeholder="Phone number"
             placeholderTextColor="gold"
+            keyboardType="numeric"
             onChangeText={(text) => setPhone(text)}
             value={phone_number}
           />
@@ -81,7 +82,6 @@ export default function Register() {
             style={styles.input}
             placeholder="Email"
             placeholderTextColor="gold"
-            secureTextEntry
             onChangeText={(text) => setEmail(text)}
             value={email}
           />
