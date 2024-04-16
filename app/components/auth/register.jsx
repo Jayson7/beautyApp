@@ -27,6 +27,7 @@ export default function Register() {
   const handleRegister = () => {
     // Add your authentication logic here
     console.log("Submit button pressed");
+    // console.log(usrname, full_name, country);
   };
 
   return (
