@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-native-paper";
 import {
   ImageBackground,
   StyleSheet,
@@ -28,6 +29,23 @@ export default function Register() {
     // Add your authentication logic here
     console.log("Submit button pressed");
     console.log(username, full_name, country, email, phone_number);
+    axios
+      .post("http://10.0.2.2:8000/signup/", {
+        username,
+        email,
+        password,
+        full_name,
+        phone_number,
+      })
+      .then((response) => {
+        // Handle successful sign-up
+        navigation.navigate("login");
+        Alert.alert("Sign-up successful", "You can now login.");
+      })
+      .catch((error) => {
+        // Handle error
+        Alert.alert("Sign-up failed", "Please try again later.");
+      });
   };
 
   return (
@@ -72,6 +90,7 @@ export default function Register() {
             placeholder="Phone number"
             placeholderTextColor="gold"
             keyboardType="numeric"
+            maxLength={11}
             onChangeText={(text) => setPhone(text)}
             value={phone_number}
           />
@@ -81,6 +100,7 @@ export default function Register() {
           <TextInput
             style={styles.input}
             placeholder="Email"
+            keyboardType="email-address"
             placeholderTextColor="gold"
             onChangeText={(text) => setEmail(text)}
             value={email}
@@ -99,9 +119,18 @@ export default function Register() {
           />
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <Button
+          mode="contained"
+          style={{
+            borderRadius: 5,
+            paddingHorizontal: 20,
+            marginTop: 25,
+          }}
+          buttonColor="#bd6513"
+          onPress={handleRegister}
+        >
+          Sign up
+        </Button>
       </View>
       {/* #################### user exist */}
       <View style={styles.userExist}>

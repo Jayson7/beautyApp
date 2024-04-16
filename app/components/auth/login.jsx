@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthData, resetState } from "../actions/action";
+import { Button } from "react-native-paper";
 
 import {
   ImageBackground,
@@ -99,9 +100,18 @@ export default function Login() {
             value={password}
           />
         </View>
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <Button
+          mode="contained"
+          style={{
+            borderRadius: 5,
+            paddingHorizontal: 20,
+            marginTop: 25,
+          }}
+          buttonColor="#bd6513"
+          onPress={handleLogin}
+        >
+          Login
+        </Button>
       </View>
       {/* #################### user exist */}
       <View style={styles.userExist}>
@@ -164,14 +174,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
-  loginButton: {
-    backgroundColor: "#bd6513",
-    padding: 10,
-    borderRadius: 5,
-    width: "50%",
-    marginTop: 30,
-    marginBottom: 30,
-  },
+  // loginButton: {
+  //   backgroundColor: "#bd6513",
+  //   padding: 10,
+  //   borderRadius: 5,
+  //   width: "50%",
+  //   marginTop: 30,
+  //   marginBottom: 30,
+  // },
   buttonText: {
     color: "white",
     textAlign: "center",

@@ -9,11 +9,18 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'email')
+        fields = ('username', 'password', 'email', 'phone_number', 'full_name')
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        try:
+            # Extract the password from the validated data
+            password = validated_data.pop('password')
+            # Create a new user instance
+            user = User.objects.create_user(**validated_data, password=password)
+            return user
+        except Exception as e:
+            # Handle any exceptions that might occur during user creation
+            raise serializers.ValidationError({'error': str(e)})
 
 # ######################################################
 
