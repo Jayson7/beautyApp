@@ -22,6 +22,7 @@ export default function Register() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [phone_number, setPhone] = useState("");
   const [full_name, setFull_name] = useState("");
   const [country, setCountry] = useState("");
@@ -30,123 +31,156 @@ export default function Register() {
   const handleRegister = () => {
     // Add your authentication logic here
     console.log("Submit button pressed");
-    console.log(username, full_name, country, email, phone_number);
-    axios
-      .post("http://10.0.2.2:8000/signup/", {
-        username: username,
-        email: email,
-        password: password,
-        full_name: full_name,
-        phone_number: phone_number,
-      })
-      .then((response) => {
-        // Handle successful sign-up
-        navigation.navigate("login");
-        Alert.alert("Sign-up successful", "You can now login.");
-      })
-      .catch((error) => {
-        // Handle error
-        Alert.alert("Sign-up failed", "Please try again later.");
-      });
+    if (password === password2) {
+      axios
+        .post("http://10.0.2.2:8000/signup/", {
+          username: username,
+          email: email,
+          password: password,
+          full_name: full_name,
+          phone_number: phone_number,
+        })
+        .then((response) => {
+          // Handle successful sign-up
+          navigation.navigate("login");
+          Alert.alert("Sign-up successful", "You can now login.");
+        })
+        .catch((error) => {
+          // Handle error
+          Alert.alert("Sign-up failed", "Please try again later.");
+        });
+    } else {
+      Alert.alert("Sign-up failed", "Password Mismatch.");
+    }
+    // confrim password and password 2
   };
 
   return (
-    <ImageBackground source={image} style={styles.container}>
-      <View style={styles.containerContent}>
-        {/* ########  logo section */}
-        <View style={styles.logoLogin}></View>
-        <Image
-          style={styles.Logo}
-          source={{
-            uri: "https://res.cloudinary.com/jaytech/image/upload/v1704910436/Beauty_App_prwcqb.png",
-          }}
-        />
+    <ScrollView style={styles.entireView}>
+      <ImageBackground source={image} style={styles.container}>
+        <View style={styles.containerContent}>
+          {/* ########  logo section */}
+          <View style={styles.logoLogin}></View>
+          <Image
+            style={styles.Logo}
+            source={{
+              uri: "https://res.cloudinary.com/jaytech/image/upload/v1704910436/Beauty_App_prwcqb.png",
+            }}
+          />
+          {/* ends */}
+          <Text style={styles.heading}>Create an account</Text>
+          {/* full name input with icon */}
+          <View style={styles.inputContainer}>
+            <Icon name="user" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Full name"
+              placeholderTextColor="gold"
+              onChangeText={(text) => setFull_name(text)}
+              value={full_name}
+            />
+          </View>
+          {/* Username input with icon */}
+          <View style={styles.inputContainer}>
+            <Icon name="user" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              placeholderTextColor="gold"
+              onChangeText={(text) => setUsername(text)}
+              value={username}
+            />
+          </View>
+          {/* Password input with icon */}
+          <View style={styles.inputContainer}>
+            <Icon name="lock" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Country"
+              placeholderTextColor="gold"
+              onChangeText={(text) => setCountry(text)}
+              value={country}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Icon name="lock" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Phone number"
+              placeholderTextColor="gold"
+              keyboardType="numeric"
+              maxLength={11}
+              onChangeText={(text) => setPhone(text)}
+              value={phone_number}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Icon name="lock" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              keyboardType="email-address"
+              placeholderTextColor="gold"
+              onChangeText={(text) => setEmail(text)}
+              value={email}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Icon name="lock" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              placeholderTextColor="gold"
+              secureTextEntry
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Icon name="lock" size={20} color="gold" style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Re-type password"
+              placeholderTextColor="gold"
+              secureTextEntry
+              onChangeText={(text) => setPassword2(text)}
+              value={password2}
+            />
+          </View>
+          <Button
+            mode="contained"
+            style={{
+              borderRadius: 5,
+              paddingHorizontal: 20,
+              marginTop: 25,
+            }}
+            buttonColor="#bd6513"
+            onPress={handleRegister}
+          >
+            Sign up
+          </Button>
+        </View>
+        {/* #################### user exist */}
+        <View style={styles.userExist}>
+          <Text style={styles.loginText}>Already have an account?</Text>
+          <TouchableOpacity style={styles.signupTextContainer}>
+            <Text style={styles.signupText}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
         {/* ends */}
-        <Text style={styles.heading}>Create an account</Text>
-        {/* Username input with icon */}
-        <View style={styles.inputContainer}>
-          <Icon name="user" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Full name"
-            placeholderTextColor="gold"
-            onChangeText={(text) => setFull_name(text)}
-            value={full_name}
-          />
-        </View>
-        {/* Password input with icon */}
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Country"
-            placeholderTextColor="gold"
-            onChangeText={(text) => setCountry(text)}
-            value={country}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Phone number"
-            placeholderTextColor="gold"
-            keyboardType="numeric"
-            maxLength={11}
-            onChangeText={(text) => setPhone(text)}
-            value={phone_number}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            keyboardType="email-address"
-            placeholderTextColor="gold"
-            onChangeText={(text) => setEmail(text)}
-            value={email}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Icon name="lock" size={20} color="gold" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="gold"
-            secureTextEntry
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-        </View>
-
-        <Button
-          mode="contained"
-          style={{
-            borderRadius: 5,
-            paddingHorizontal: 20,
-            marginTop: 25,
-          }}
-          buttonColor="#bd6513"
-          onPress={handleRegister}
-        >
-          Sign up
-        </Button>
-      </View>
-      {/* #################### user exist */}
-      <View style={styles.userExist}>
-        <Text style={styles.loginText}>Already have an account?</Text>
-        <TouchableOpacity style={styles.signupTextContainer}>
-          <Text style={styles.signupText}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
-      {/* ends */}
-    </ImageBackground>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  entireView: {
+    flex: 1,
+    margin: 0,
+    padding: 0,
+    height: "100%",
+  },
   container: {
     flex: 1,
     resizeMode: "cover",
