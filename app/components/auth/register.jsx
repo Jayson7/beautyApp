@@ -56,7 +56,11 @@ export default function Register() {
   };
 
   return (
-    <ScrollView style={styles.entireView}>
+    <ScrollView
+      style={styles.entireView}
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
       <ImageBackground source={image} style={styles.container}>
         <View style={styles.containerContent}>
           {/* ########  logo section */}
@@ -177,9 +181,6 @@ export default function Register() {
 const styles = StyleSheet.create({
   entireView: {
     flex: 1,
-    margin: 0,
-    padding: 0,
-    height: "100%",
   },
   container: {
     flex: 1,
