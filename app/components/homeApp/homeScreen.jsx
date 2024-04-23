@@ -11,3 +11,7 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+
+// login screen does nothing to wrong password
+// search screen
+// appbar config
