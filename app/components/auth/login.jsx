@@ -105,6 +105,9 @@ export default function Login() {
           mode="contained"
           buttonColor="#bd6513"
           onPress={handleLogin}
+          style={{
+            borderRadius: 5,
+          }}
         >
           Login
         </Button>
