@@ -101,12 +101,8 @@ export default function Login() {
           />
         </View>
         <Button
+          icon="login"
           mode="contained"
-          style={{
-            borderRadius: 5,
-            paddingHorizontal: 20,
-            marginTop: 25,
-          }}
           buttonColor="#bd6513"
           onPress={handleLogin}
         >
@@ -129,6 +125,10 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+  loginIcon: {
+    marginHorizontal: 10,
+    marginVertical: 5,
+  },
   container: {
     flex: 1,
     resizeMode: "cover",

@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import *
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 
 # ######################################################
 
@@ -25,6 +27,37 @@ class UserSerializer(serializers.ModelSerializer):
 
 # ######################################################
 
+
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        return token
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################
 # vendors serializers 
 # class VendorsSrializers(serializers.Serializer):
 #         id = serializers.IntegerField(read_only=True)

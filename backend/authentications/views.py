@@ -8,6 +8,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserSerializer
 from django.contrib.auth import authenticate
 
+# token import ###########################################
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 # Create your views here.
 
 # sign up
@@ -68,3 +71,8 @@ def Logout(request):
         return Response({'error': f'Error during token blacklist: {str(e)}'}, status=500)
 
     return Response({'success': 'User successfully signed out'})
+
+
+
+#########################################    token configurations  #######################################
+
