@@ -41,7 +41,7 @@ export default function Login() {
     console.log("Password:", password);
 
     axios
-      .post("http://10.0.2.2:8000/signin/", {
+      .post("http://192.168.229.132:8000/signin/", {
         username: username,
         password: password,
       })
@@ -72,7 +72,7 @@ export default function Login() {
           }}
         />
         {/* ends */}
-        <Text style={styles.heading}>Login</Text>
+        <Text style={styles.heading}>Welcome Back</Text>
         <Text style={styles.introText}>
           Enhance your beauty collection with our curated selection of premium
           skincare essentials and glamorous makeup.
@@ -107,6 +107,10 @@ export default function Login() {
           onPress={handleLogin}
           style={{
             borderRadius: 5,
+            marginTop: 30,
+            paddingHorizontal: 30,
+            padding: 20,
+            paddingVertical: 5,
           }}
         >
           Login
@@ -168,9 +172,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   input: {
-    height: 40,
-    width: "70%",
-    padding: 10,
+    height: 50,
+    width: "75%",
+    fontSize: 17,
+    paddingHorizontal: 10,
     color: "white",
     borderColor: "gray",
     borderWidth: 1,

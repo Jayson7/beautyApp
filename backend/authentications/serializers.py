@@ -9,10 +9,11 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    password2 = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2' 'email', 'phone_number', 'full_name')
+        fields = ('username', 'password', 'password2', 'email', 'phone_number', 'full_name')
 
     def create(self, validated_data):
         try:

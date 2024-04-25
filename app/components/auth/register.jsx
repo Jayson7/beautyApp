@@ -20,6 +20,7 @@ const image = require("../../assets/3.jpg");
 //
 export default function Register() {
   const navigation = useNavigation();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -33,7 +34,7 @@ export default function Register() {
     console.log("Submit button pressed");
     if (password === password2) {
       axios
-        .post("http://10.0.2.2:8000/signup/", {
+        .post("http://192.168.229.132:8000/signup/", {
           username: username,
           email: email,
           password: password,
@@ -168,8 +169,11 @@ export default function Register() {
         {/* #################### user exist */}
         <View style={styles.userExist}>
           <Text style={styles.loginText}>Already have an account?</Text>
-          <TouchableOpacity style={styles.signupTextContainer}>
-            <Text style={styles.signupText}>Sign up</Text>
+          <TouchableOpacity
+            style={styles.signupTextContainer}
+            onPress={() => navigation.navigate("login")}
+          >
+            <Text style={styles.signupText}>Sign in</Text>
           </TouchableOpacity>
         </View>
         {/* ends */}

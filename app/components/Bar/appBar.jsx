@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Appbar } from "react-native-paper";
+import ToggleButtonMenu from "../toggleButton";
 
 const AppBars = ({ navigation }) => {
   const handleSearch = () => {
@@ -12,18 +13,20 @@ const AppBars = ({ navigation }) => {
     <Appbar.Header>
       <View
         style={{
+          width: "100%",
           flex: 1,
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+
+          // backgroundColor: "#000",
         }}
       >
         <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Title" />
-        <View style={{ width: 40 }} /> {/* Empty view to adjust spacing */}
+
+        <Appbar.Action icon="cart" onPress={""} />
+        <ToggleButtonMenu />
       </View>
-      <Appbar.Action icon="calendar" onPress={() => {}} />
-      <Appbar.Action icon="magnify" onPress={handleSearch} />
     </Appbar.Header>
   );
 };

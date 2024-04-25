@@ -1,11 +1,17 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { View, Text } from "react-native";
 import AppBars from "../Bar/appBar";
+
+//
+
+//
+
+//
 const HomeScreen = () => {
   return (
     <View>
       <AppBars />
-      <Text>HomeScreen</Text>
+      <View></View>
     </View>
   );
 };
