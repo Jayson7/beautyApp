@@ -15,12 +15,40 @@ import Onboard from "./components/onboarder/onboard";
 import Register from "./components/auth/register";
 import HomeScreen from "./components/homeApp/homeScreen";
 
+//
+
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
 // ################################### config ##############3
+
+SplashScreen.preventAutoHideAsync();
+//
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [isLoaded] = useFonts({
+    "mrt-mid": require("./assets/fonts/Montserrat-Medium.ttf"),
+    "mrt-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+    "mrt-xbold": require("./assets/fonts/Montserrat-ExtraBold.ttf"),
+  });
+
+  //
+
+  const handleOnLayout = useCallback(async () => {
+    if (isLoaded) {
+      await SplashScreen.hideAsync(); //hide the splashscreen
+    }
+  }, [isLoaded]);
+  //
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  //
   return (
-    <Provider store={store}>
+    <Provider store={store} onLayout={handleOnLayout}>
       <PaperProvider>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
