@@ -28,9 +28,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isLoaded] = useFonts({
-    "mrt-mid": require("./assets/fonts/Montserrat-Medium.ttf"),
-    "mrt-bold": require("./assets/fonts/Montserrat-Bold.ttf"),
-    "mrt-xbold": require("./assets/fonts/Montserrat-ExtraBold.ttf"),
+    "latp-black": require("./assets/fonts/Lato-Black.ttf"),
+    "mont-black": require("./assets/fonts/Montserrat-Black.ttf"),
   });
 
   //
