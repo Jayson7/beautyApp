@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { PaperProvider, Appbar } from "react-native-paper";
 import { AppLoading } from "expo";
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
+
 import { AppRegistry } from "react-native";
 import { name as appName } from "./app.json";
 
@@ -19,50 +19,41 @@ import HomeScreen from "./components/homeApp/homeScreen";
 // Import store
 import store from "./components/store/store";
 
-SplashScreen.preventAutoHideAsync();
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const [isLoaded] = useFonts({
-    "latp-black": require("./assets/fonts/Lato-Black.ttf"),
+    "latp-reg": require("./assets/fonts/Lato-Regular.ttf"),
     "mont-black": require("./assets/fonts/Montserrat-Black.ttf"),
+    "ubuntu-italic": require("./assets/fonts/Ubuntu-Italic.ttf"),
   });
 
-  const handleOnLayout = useCallback(async () => {
-    if (isLoaded) {
-      await SplashScreen.hideAsync(); // Hide the splash screen
-      setDataLoaded(true); // Set dataLoaded to true once fonts are loaded
-    }
-  }, [isLoaded]);
-
-  // Show AppLoading until fonts are loaded
-  if (!dataLoaded) {
-    return <AppLoading />;
+  if (!isLoaded) {
+    return <View></View>;
+  } else {
+    return (
+      <Provider store={store}>
+        <PaperProvider>
+          <NavigationContainer>
+            <View style={{ flex: 1 }}>
+              <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen
+                  name="onboard"
+                  component={Onboard}
+                  options={{ title: "Welcome" }}
+                />
+                <Stack.Screen name="login" component={Login} />
+                <Stack.Screen name="register" component={Register} />
+                <Stack.Screen name="home" component={HomeScreen} />
+              </Stack.Navigator>
+            </View>
+          </NavigationContainer>
+        </PaperProvider>
+      </Provider>
+    );
   }
-
-  return (
-    <Provider store={store}>
-      <PaperProvider>
-        <NavigationContainer>
-          <View style={{ flex: 1 }} onLayout={handleOnLayout}>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen
-                name="onboard"
-                component={Onboard}
-                options={{ title: "Welcome" }}
-              />
-              <Stack.Screen name="login" component={Login} />
-              <Stack.Screen name="register" component={Register} />
-              <Stack.Screen name="home" component={HomeScreen} />
-            </Stack.Navigator>
-          </View>
-        </NavigationContainer>
-      </PaperProvider>
-    </Provider>
-  );
 }
 
 AppRegistry.registerComponent(appName, () => App);

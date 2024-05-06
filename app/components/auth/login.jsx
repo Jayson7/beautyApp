@@ -156,11 +156,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 40,
     fontSize: 12,
+
+    fontFamily: "lato-reg",
   },
   heading: {
     fontSize: 34,
     marginBottom: 20,
     color: "#fff",
+    fontFamily: "ubuntu-italic",
     marginBottom: 30,
   },
   inputContainer: {
