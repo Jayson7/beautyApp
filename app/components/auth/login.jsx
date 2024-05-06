@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     fontSize: 12,
 
-    fontFamily: "lato-reg",
+    fontFamily: "latp-reg",
   },
   heading: {
     fontSize: 34,
