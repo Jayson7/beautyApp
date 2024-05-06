@@ -9,7 +9,7 @@ from .serializers import UserSerializer
 from django.contrib.auth import authenticate
 
 # token import ###########################################
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 
 # Create your views here.
 

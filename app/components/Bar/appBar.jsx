@@ -10,16 +10,13 @@ const AppBars = ({ navigation }) => {
   };
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{ borderBottomWidth: 0, borderRadius: 0 }}>
       <View
         style={{
           width: "100%",
-          flex: 1,
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-
-          // backgroundColor: "#000",
         }}
       >
         <Appbar.BackAction onPress={() => navigation.goBack()} />
