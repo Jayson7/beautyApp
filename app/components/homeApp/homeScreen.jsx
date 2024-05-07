@@ -10,16 +10,25 @@ import {
 import AppBars from "../Bar/appBar";
 
 //
-
+import SearchBar from "./searchBar";
 //
 
 //
 const HomeScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <AppBars />
-      <SafeAreaView style={styles.container}>
+
+      <SafeAreaView>
+        <SearchBar />
         <ScrollView style={styles.mainsContainer}>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
+          <Text style={styles.text}>Hello </Text>
           <Text style={styles.text}>Hello </Text>
           <Text style={styles.text}>Hello </Text>
           <Text style={styles.text}>Hello </Text>
@@ -44,10 +53,11 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: StatusBar.currentHeight,
+    flex: 1,
   },
   mainsContainer: {
     backgroundColor: "pink",
+    paddingTop: StatusBar.currentHeight / 2,
   },
   text: {
     fontSize: 42,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Appbar } from "react-native-paper";
-import ToggleButtonMenu from "../toggleButton";
+import ToggleButtonMenu from "./toggleButton";
 
 const AppBars = ({ navigation }) => {
   const handleSearch = () => {
@@ -13,7 +13,7 @@ const AppBars = ({ navigation }) => {
     <Appbar.Header style={{ borderBottomWidth: 0, borderRadius: 0 }}>
       <View
         style={{
-          width: "100%",
+          width: "95%",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
