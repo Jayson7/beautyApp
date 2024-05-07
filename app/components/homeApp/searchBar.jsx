@@ -13,6 +13,7 @@ const SearchBar = () => {
         paddingVertical: 5,
         flexDirection: "row",
         alignItems: "center",
+        marginVertical: 10,
       }}
     >
       <Searchbar

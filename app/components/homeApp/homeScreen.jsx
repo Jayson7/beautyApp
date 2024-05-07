@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainsContainer: {
-    backgroundColor: "pink",
-    paddingTop: StatusBar.currentHeight / 2,
+    backgroundColor: "#F1F2EB",
+    paddingTop: StatusBar.currentHeight,
   },
   text: {
     fontSize: 42,

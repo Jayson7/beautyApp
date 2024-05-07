@@ -10,7 +10,15 @@ const AppBars = ({ navigation }) => {
   };
 
   return (
-    <Appbar.Header style={{ borderBottomWidth: 0, borderRadius: 0 }}>
+    <Appbar.Header
+      style={{
+        borderBottomWidth: 0,
+        borderRadius: 0,
+        backgroundColor: "#F1F2EB",
+        paddingTop: 30,
+        marginBottom: 20,
+      }}
+    >
       <View
         style={{
           width: "95%",
@@ -19,9 +27,9 @@ const AppBars = ({ navigation }) => {
           alignItems: "center",
         }}
       >
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
+        <Appbar.BackAction size={19} onPress={() => navigation.goBack()} />
 
-        <Appbar.Action icon="cart" onPress={""} />
+        <Appbar.Action icon="cart" size={20} onPress={""} />
         <ToggleButtonMenu />
       </View>
     </Appbar.Header>
