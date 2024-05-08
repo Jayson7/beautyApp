@@ -33,25 +33,23 @@ const FeaturedProducts = () => {
 export default FeaturedProducts;
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 42,
-    color: "black",
-  },
-
   headerTxt: {
-    fontSize: 42,
+    fontSize: 30,
     fontFamily: "ubuntu-italic-bold",
     color: "black",
+    width: "50%",
+    marginBottom: 20,
 
     textAlign: "center",
   },
   productBox: {
     padding: 10,
-    margin: 20,
-    backgroundColor: "#ccc",
+    margin: 10,
+
+    backgroundColor: "#D8DAD3",
     borderRadius: 5,
     width: 200,
-    height: 300,
+    height: 250,
     borderRadius: 30,
     display: "flex",
     alignItems: "center",
