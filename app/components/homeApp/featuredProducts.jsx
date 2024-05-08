@@ -1,6 +1,6 @@
 import React from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
-
+import { Button } from "react-native-paper";
 const data = [
   { id: "1", name: "Item 1" },
   { id: "2", name: "Item 2" },
@@ -18,7 +18,9 @@ const renderItem = ({ item }) => (
 const FeaturedProducts = () => {
   return (
     <View>
-      <Text style={styles.headerTxt}>Featured Products</Text>
+      <View style={styles.featureHeader}>
+        <Text style={styles.headerTxt}>Featured Products</Text>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "ubuntu-italic-bold",
     color: "black",
-    width: "50%",
+
     marginBottom: 20,
 
     textAlign: "center",
