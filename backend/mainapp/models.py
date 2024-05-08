@@ -3,28 +3,12 @@ from django.db import models
 # Create your models here.
 
 
-# all vendors 
-class Vendor(models.Model):
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.CharField(max_length=100)
+    discount = models.IntegerField()
+    in_stock = models.IntegerField()
     
-    name_of_company = models.CharField(max_length=100)
-    registration_number = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    contact_number = models.CharField(max_length=17)
-    stars = models.CharField(max_length=5)
-
-
     def __str__(self):
-        return self.name_of_company
+        return self.name
     
-# all  full profiles
-class Profile(models.Model):
-    
-    pass 
-
-
-
-
-
-# all products 
-class Products(models.Model):
-    pass 

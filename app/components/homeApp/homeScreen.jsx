@@ -15,6 +15,7 @@ import SearchBar from "./searchBar";
 
 // components
 import FeaturedProducts from "./featuredProducts";
+import FastSales from "./fastSales";
 
 //
 
@@ -27,6 +28,7 @@ const HomeScreen = () => {
         <SearchBar />
         <ScrollView style={styles.mainsContainer}>
           <FeaturedProducts />
+          <FastSales />
         </ScrollView>
       </SafeAreaView>
     </View>

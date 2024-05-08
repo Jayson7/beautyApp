@@ -17,7 +17,7 @@ const renderItem = ({ item }) => (
 
 const FeaturedProducts = () => {
   return (
-    <View>
+    <View style={styles.containerFeaturedProd}>
       <View style={styles.featureHeader}>
         <Text style={styles.headerTxt}>Featured Products</Text>
       </View>
@@ -35,13 +35,14 @@ const FeaturedProducts = () => {
 export default FeaturedProducts;
 
 const styles = StyleSheet.create({
+  containerFeaturedProd: {
+    paddingHorizontal: 5,
+  },
   headerTxt: {
     fontSize: 30,
     fontFamily: "ubuntu-italic-bold",
     color: "black",
-
     marginBottom: 20,
-
     textAlign: "center",
   },
   productBox: {
@@ -50,8 +51,8 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#D8DAD3",
     borderRadius: 5,
-    width: 190,
-    height: 250,
+    width: 170,
+    height: 230,
     borderRadius: 30,
     display: "flex",
     alignItems: "center",
