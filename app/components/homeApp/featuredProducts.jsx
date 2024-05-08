@@ -1,78 +1,60 @@
-import { View, Text, FlatList, StatusBar } from "react-native";
 import React from "react";
+import { View, FlatList, Text, StyleSheet } from "react-native";
 
-const FeaturedProducts = () => {
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
+const data = [
+  { id: "1", name: "Item 1" },
+  { id: "2", name: "Item 2" },
+  { id: "3", name: "Item 3" },
+  { id: "4", name: "Item 4" },
+  // Add more items as needed
 ];
 
-    
-const Item = ({item, onPress, backgroundColor, textColor}) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
-  </TouchableOpacity>
+const renderItem = ({ item }) => (
+  <View style={styles.productBox}>
+    <Text>{item.name}</Text>
+  </View>
 );
 
-const App = () => {
-  const [selectedId, setSelectedId] = useState();
-
-  const renderItem = ({item}) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
-
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={backgroundColor}
-        textColor={color}
-      />
-    );
-  };
-    
-    
+const FeaturedProducts = () => {
   return (
-    
-      <SafeAreaView style={styles.container}>
-      <Text>FeaturedProducts</Text>
+    <View>
+      <Text style={styles.headerTxt}>Featured Products</Text>
       <FlatList
-        data={DATA}
+        data={data}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
-        extraData={selectedId}
+        keyExtractor={(item) => item.id}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false} // Remove scroll indicator
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
+export default FeaturedProducts;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16,
+  text: {
+    fontSize: 42,
+    color: "black",
   },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
+
+  headerTxt: {
+    fontSize: 42,
+    fontFamily: "ubuntu-italic-bold",
+    color: "black",
+
+    textAlign: "center",
   },
-  header: {
-    fontSize: 32,
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 24,
+  productBox: {
+    padding: 10,
+    margin: 20,
+    backgroundColor: "#ccc",
+    borderRadius: 5,
+    width: 200,
+    height: 300,
+    borderRadius: 30,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
-export default FeaturedProducts;

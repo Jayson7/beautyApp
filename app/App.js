@@ -27,6 +27,7 @@ export default function App() {
   const [isLoaded] = useFonts({
     "latp-reg": require("./assets/fonts/Lato-Regular.ttf"),
     "mont-black": require("./assets/fonts/Montserrat-Black.ttf"),
+    "ubuntu-italic-bold": require("./assets/fonts/Ubuntu-BoldItalic.ttf"),
     "ubuntu-italic": require("./assets/fonts/Ubuntu-Italic.ttf"),
   });
 
