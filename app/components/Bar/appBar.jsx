@@ -21,13 +21,14 @@ const AppBars = ({ navigation }) => {
     >
       <View
         style={{
-          width: "95%",
+          width: "100%",
+          paddingHorizontal: 27,
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <Appbar.BackAction size={19} onPress={() => navigation.goBack()} />
+        {/* <Appbar.BackAction size={19} onPress={() => navigation.goBack()} /> */}
 
         <Appbar.Action icon="cart" size={20} onPress={""} />
         <ToggleButtonMenu />

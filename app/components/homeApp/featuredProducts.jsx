@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 170,
     height: 230,
-    borderRadius: 30,
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
