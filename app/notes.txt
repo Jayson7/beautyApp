@@ -1,1 +1,7 @@
 rm -rf ./node_modules/expo/node_modules/expo-font/
+
+
+task:
+put all product out bot featured and fast then others
+correct login failed and redesign login pop up 
+

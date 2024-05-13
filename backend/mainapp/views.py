@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import *# Import your Product model
 
+from .serializers import *
 
 # Create your views here.
 
@@ -32,3 +33,9 @@ def HomeView(request):
         return Response(content)
 
     
+
+
+
+class ProductListAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
