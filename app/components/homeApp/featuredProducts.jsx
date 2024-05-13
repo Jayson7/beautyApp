@@ -1,32 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
-const data = [
-  { id: "1", name: "Item 1" },
-  { id: "2", name: "Item 2" },
-  { id: "3", name: "Item 3" },
-  { id: "4", name: "Item 4" },
-  // Add more items as needed
-];
-
-const renderItem = ({ item }) => (
-  <View style={styles.productBox}>
-    <Text>{item.name}</Text>
-  </View>
-);
+import axios from "axios";
 
 const FeaturedProducts = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://your-django-backend-url/api/featured-products/"
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const renderProductItem = ({ item }) => (
+    <View style={styles.productBox}>
+      <Text>{item.name}</Text>
+      <Text>{item.price}</Text>
+      {/* Render other product fields as needed */}
+    </View>
+  );
+
   return (
     <View style={styles.containerFeaturedProd}>
       <View style={styles.featureHeader}>
         <Text style={styles.headerTxt}>Featured Products</Text>
       </View>
       <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        data={products}
+        keyExtractor={(item) => item.id.toString()}
         horizontal={true}
-        showsHorizontalScrollIndicator={false} // Remove scroll indicator
+        showsHorizontalScrollIndicator={false}
+        renderItem={renderProductItem}
       />
     </View>
   );
@@ -48,27 +60,19 @@ const styles = StyleSheet.create({
   productBox: {
     padding: 10,
     margin: 10,
-
     backgroundColor: "#D8DAD3",
     borderRadius: 5,
     width: 170,
     height: 230,
-
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: {
-      width: 200,
-      height: 200,
-      backgroundColor: "white",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
