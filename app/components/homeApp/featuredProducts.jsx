@@ -1,30 +1,54 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, Alert } from "react-native";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+
+//
+import { useNavigation } from "@react-navigation/native";
+
+//
 
 const FeaturedProducts = () => {
+  //
+  const navigation = useNavigation();
+  //
   const [products, setProducts] = useState([]);
+
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://your-django-backend-url/api/featured-products/"
+          "http://your-django-backend-url/api/featured-products/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
+        // Check if error status is 401 (Unauthorized) indicating token expiration
+        if (error.response.status === 401) {
+          // Dispatch action to refresh token
+          navigation.navigate("login");
+          Alert("Session Expired, Please login");
+        }
       }
     };
 
-    fetchData();
-  }, []);
+    if (token) {
+      fetchData();
+    }
+  }, [token]);
 
   const renderProductItem = ({ item }) => (
     <View style={styles.productBox}>
       <Text>{item.name}</Text>
       <Text>{item.price}</Text>
-      {/* Render other product fields as needed */}
     </View>
   );
 
