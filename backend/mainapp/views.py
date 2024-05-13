@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework import generics
 from rest_framework import status
 from rest_framework.decorators import api_view,  permission_classes
 from rest_framework.response import Response
@@ -38,4 +38,8 @@ def HomeView(request):
 
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class ProductFeaturedView(generics.ListAPIView):
+    queryset = Product.objects.all().filter(featured=True)
     serializer_class = ProductSerializer

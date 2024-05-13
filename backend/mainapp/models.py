@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 
 choice_category = [
-    '(Cream' ,'Cream)',
-    '(Lotion' , 'Lotion)',
+    ('Cream' ,'Cream'),
+    ('Lotion' , 'Lotion'),
     ('Haircream' , 'Haircream'),
     ('pancake' , 'pancake'),
     ('Powder' , 'Powder'),
@@ -22,7 +22,7 @@ class Product(models.Model):
     fast_sales = models.BooleanField(default=False)
     views = models.PositiveIntegerField(default=0)
     featured = models.BooleanField(default=False)
-    Fast = models.models.BooleanField(default=False)
+    Fast = models.BooleanField(default=False)
     category = models.CharField(max_length=30, choices=choice_category)
     
     def __str__(self):
