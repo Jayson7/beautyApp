@@ -5,8 +5,8 @@ from .views import *
 urlpatterns = [
 
     
-  path('productList', ProductListAPIView, name='productlist'),
-  path('fproductList', ProductFeaturedView, name='fproductlist'),
+  path('productList', ProductListAPIView.as_view(), name='productlist'),
+  path('fproductList', ProductFeaturedView.as_view(), name='fproductlist'),
 
     
 ]
