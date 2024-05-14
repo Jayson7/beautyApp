@@ -7,7 +7,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserSerializer
 from django.contrib.auth import authenticate
-
+from rest_framework.views import APIView
+from datetime import datetime
 # token import ###########################################
 
 
@@ -28,9 +29,6 @@ def signup(request):
             'message': 'User created successfully'
         }, status=201)
     return Response(serializer.errors, status=400)
-
-
-
 
 
 # sign in 
@@ -76,3 +74,18 @@ def Logout(request):
 
 #########################################    token configurations  #######################################
 
+# views.py
+
+
+
+
+class MyProtectedView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        # Check if token has expired
+        if datetime.utcnow():
+            return Response({'detail': 'Token has expired'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        # Your view logic here
+        return Response({'message': 'Success'})

@@ -14,14 +14,14 @@ const FeaturedProducts = () => {
   //
   const [products, setProducts] = useState([]);
 
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.access);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://your-django-backend-url/api/featured-products/",
+          "http://192.168.229.132:8000/fproducts",
           {
             headers: {
               Authorization: `Bearer ${token}`,

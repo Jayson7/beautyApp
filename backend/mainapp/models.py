@@ -10,7 +10,6 @@ choice_category = [
     ('Powder' , 'Powder'),
     ('Eyebrown' , 'Eyebrown'),
     ('Eyelashes' , 'Eyelashes'),
-   
 ]
 
 
@@ -23,7 +22,9 @@ class Product(models.Model):
     views = models.PositiveIntegerField(default=0)
     featured = models.BooleanField(default=False)
     Fast = models.BooleanField(default=False)
-    category = models.CharField(max_length=30, choices=choice_category)
+    category = models.CharField(max_length=30,choices=choice_category)
+    image_url = models.URLField()
+    
     
     def __str__(self):
         return self.name
