@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ImageBackground, View, Text } from "react-native";
-
+    
 const FastSales = () => {
   return (
     <View style={styles.container}>
@@ -18,7 +18,8 @@ const FastSales = () => {
         >
           Fast Sales
         </Text>
-      </View>
+          </View>
+          
     </View>
   );
 };

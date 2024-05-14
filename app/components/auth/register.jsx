@@ -154,10 +154,12 @@ export default function Register() {
             />
           </View>
           <Button
+            icon="account-eye"
             mode="contained"
             style={{
               borderRadius: 5,
-              paddingHorizontal: 20,
+              paddingHorizontal: 30,
+              paddingVertical: 5,
               marginTop: 25,
             }}
             buttonColor="#bd6513"

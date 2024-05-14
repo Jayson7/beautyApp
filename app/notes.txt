@@ -2,6 +2,7 @@ rm -rf ./node_modules/expo/node_modules/expo-font/
 
 
 task:
+problem with sign up from external devices
 put all product out both featured and fast then others
 correct login failed and redesign login pop up 
 
