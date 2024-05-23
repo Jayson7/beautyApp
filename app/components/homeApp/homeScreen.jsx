@@ -6,7 +6,7 @@ import {
   ScrollView,
   StatusBar,
   SafeAreaView,
-  FlatList,
+  Alert,
 } from "react-native";
 import AppBars from "../Bar/appBar";
 import axios from "axios";
@@ -15,13 +15,64 @@ import { useNavigation } from "@react-navigation/native";
 
 // Components
 import SearchBar from "./searchBar";
-import FeaturedProducts from "./featuredProducts";
 import FastSales from "./fastSales";
+
+const FeaturedProducts = () => {
+  const navigation = useNavigation();
+  const [products, setProducts] = useState([]);
+  const token = useSelector((state) => state.auth.access);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://192.168.229.132:8000/fproducts",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        if (error.response.status === 401) {
+          navigation.navigate("login");
+          Alert.alert("Session Expired", "Please login again");
+        }
+      }
+    };
+
+    if (token) {
+      fetchData();
+    }
+  }, [token]);
+
+  return (
+    <View style={styles.containerFeaturedProd}>
+      <View style={styles.featureHeader}>
+        <Text style={styles.headerTxt}>Featured Products</Text>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContainer}
+      >
+        {products.map((item) => (
+          <View key={item.id} style={styles.productBox}>
+            <Text>{item.name}</Text>
+            <Text>{item.price}</Text>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.access);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +102,6 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <AppBars />
-
       <SafeAreaView>
         <SearchBar />
         <ScrollView style={styles.mainsContainer}>
@@ -59,17 +109,15 @@ const HomeScreen = () => {
           <FastSales />
           <View>
             <Text>Products</Text>
-            <FlatList
-              data={products}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <View>
+            <ScrollView>
+              {products.map((item) => (
+                <View key={item.id}>
                   <Text>{item.name}</Text>
                   <Text>{item.price}</Text>
                   {/* Render other product fields as needed */}
                 </View>
-              )}
-            />
+              ))}
+            </ScrollView>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -91,6 +139,39 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     fontSize: 30,
+  },
+  containerFeaturedProd: {
+    paddingHorizontal: 5,
+  },
+  featureHeader: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  headerTxt: {
+    fontSize: 30,
+    fontFamily: "ubuntu-italic-bold",
+    color: "black",
+  },
+  scrollContainer: {
+    flexDirection: "row",
+  },
+  productBox: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#D8DAD3",
+    borderRadius: 5,
+    width: 170,
+    height: 230,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
 

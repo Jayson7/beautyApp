@@ -6,7 +6,7 @@ urlpatterns = [
 
     
   path('productlist', ProductListAPIView.as_view(), name='productlist'),
-  path('fproductList', ProductFeaturedView.as_view(), name='fproductlist'),
+  path('fproducts', ProductFeaturedView.as_view(), name='fproducts'),
 
     
 ]
