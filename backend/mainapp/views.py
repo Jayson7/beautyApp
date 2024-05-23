@@ -20,3 +20,7 @@ class ProductListAPIView(generics.ListAPIView):
 class ProductFeaturedView(generics.ListAPIView):
     queryset = Product.objects.all().filter(featured=True)
     serializer_class = ProductSerializer
+
+class ProductFastSalesView(generics.ListAPIView):
+    queryset = Product.objects.all().filter(fast_sales=True)
+    serializer_class = FastProductSerializer

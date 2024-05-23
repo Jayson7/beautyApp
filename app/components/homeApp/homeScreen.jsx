@@ -15,8 +15,74 @@ import { useNavigation } from "@react-navigation/native";
 
 // Components
 import SearchBar from "./searchBar";
-import FastSales from "./fastSales";
+// ############################# Fast sales ########################
 
+const FastSales = () => {
+  const navigation = useNavigation();
+
+  const [fastproducts, setFastProducts] = useState([]);
+  const token = useSelector((state) => state.auth.access);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://192.168.229.132:8000/fastproducts",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setFastProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        if (error.response.status === 401) {
+          navigation.navigate("login");
+          Alert.alert("Session Expired", "Please login again");
+        }
+      }
+    };
+
+    if (token) {
+      fetchData();
+    }
+  }, [token]);
+
+  return (
+    <View>
+      <View style={styles.header}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontFamily: "ubuntu-italic-bold",
+            color: "#566246",
+            backgroundColor: "#fff",
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            borderRadius: 10,
+          }}
+        >
+          Fast Sales
+        </Text>
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContainer}
+      >
+        {fastproducts.map((item) => (
+          <View key={item.id} style={styles.productBox}>
+            <Text>{item.name}</Text>
+            <Text>{item.price}</Text>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
+
+//##################################### featured products ##############################################
 const FeaturedProducts = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
@@ -68,7 +134,7 @@ const FeaturedProducts = () => {
     </View>
   );
 };
-
+//################################ HomeScreen###################
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
@@ -102,22 +168,20 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <AppBars />
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <SearchBar />
         <ScrollView style={styles.mainsContainer}>
           <FeaturedProducts />
           <FastSales />
-          <View>
+          <View style={styles.productsContainer}>
             <Text>Products</Text>
-            <ScrollView>
-              {products.map((item) => (
-                <View key={item.id}>
-                  <Text>{item.name}</Text>
-                  <Text>{item.price}</Text>
-                  {/* Render other product fields as needed */}
-                </View>
-              ))}
-            </ScrollView>
+            {products.map((item) => (
+              <View key={item.id} style={styles.productBox}>
+                <Text>{item.name}</Text>
+                <Text>{item.price}</Text>
+                {/* Render other product fields as needed */}
+              </View>
+            ))}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -147,11 +211,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
-  headerTxt: {
-    fontSize: 30,
-    fontFamily: "ubuntu-italic-bold",
-    color: "black",
-  },
   scrollContainer: {
     flexDirection: "row",
   },
@@ -172,6 +231,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  productsContainer: {
+    paddingVertical: 20,
+  },
+  containerFast: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 
