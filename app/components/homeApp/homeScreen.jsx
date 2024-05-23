@@ -7,6 +7,7 @@ import {
   StatusBar,
   SafeAreaView,
   Alert,
+  Image,
 } from "react-native";
 import AppBars from "../Bar/appBar";
 import axios from "axios";
@@ -50,7 +51,7 @@ const FastSales = () => {
   }, [token]);
 
   return (
-    <View>
+    <View style={{ paddingHorizontal: 2, alignItems: "center" }}>
       <View style={styles.header}>
         <Text
           style={{
@@ -61,6 +62,7 @@ const FastSales = () => {
             paddingHorizontal: 20,
             paddingVertical: 10,
             borderRadius: 10,
+            marginVertical: 20,
           }}
         >
           Fast Sales
@@ -73,6 +75,9 @@ const FastSales = () => {
       >
         {fastproducts.map((item) => (
           <View key={item.id} style={styles.productBox}>
+            <View style={{ height: "70%", width: "100%" }}>
+              <Image style={styles.tinyLogo} source={{ uri: item.image_url }} />
+            </View>
             <Text>{item.name}</Text>
             <Text>{item.price}</Text>
           </View>
@@ -192,9 +197,10 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#171738",
   },
   mainsContainer: {
-    backgroundColor: "#F1F2EB",
+    backgroundColor: "#DFF3E4",
     paddingTop: StatusBar.currentHeight,
   },
   text: {
@@ -205,7 +211,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   containerFeaturedProd: {
-    paddingHorizontal: 5,
+    paddingHorizontal: 2,
+    alignItems: "center",
   },
   featureHeader: {
     alignItems: "center",

@@ -14,9 +14,10 @@ const AppBars = ({ navigation }) => {
       style={{
         borderBottomWidth: 0,
         borderRadius: 0,
-        backgroundColor: "#F1F2EB",
+        backgroundColor: "#DFF3E4",
         paddingTop: 30,
         marginBottom: 20,
+        color: "#fff",
       }}
     >
       <View
@@ -26,11 +27,17 @@ const AppBars = ({ navigation }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          color: "#fff",
         }}
       >
         {/* <Appbar.BackAction size={19} onPress={() => navigation.goBack()} /> */}
 
-        <Appbar.Action icon="cart" size={20} onPress={""} />
+        <Appbar.Action
+          icon="cart"
+          size={20}
+          onPress={""}
+          style={{ backgroundColor: "gold" }}
+        />
         <ToggleButtonMenu />
       </View>
     </Appbar.Header>

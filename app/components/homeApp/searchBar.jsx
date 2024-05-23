@@ -21,13 +21,12 @@ const SearchBar = () => {
         onChangeText={setSearchQuery}
         value={searchQuery}
         style={{
-          backgroundColor: "#d8dad3",
+          backgroundColor: "white",
           borderRadius: 20,
-
           width: "75%",
         }}
       />
-      <Icon name="sound-mix" size={20} color="#566246" />
+      <Icon name="sound-mix" size={20} color="gold" />
     </View>
   );
 };
