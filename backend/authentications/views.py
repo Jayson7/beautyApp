@@ -15,18 +15,19 @@ from datetime import datetime
 # Create your views here.
 
 # sign up
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def signup(request):
-    print(request.data)
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
         return Response({
-            # 'refresh': str(refresh),
-            # 'access': str(refresh.access_token),
-            'message': 'User created successfully'
+            'message': 'User created successfully',
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
         }, status=201)
     return Response(serializer.errors, status=400)
 

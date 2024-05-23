@@ -15,16 +15,17 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'password', 'password2', 'email', 'phone_number', 'full_name')
 
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("Passwords do not match")
+        return data
+
     def create(self, validated_data):
-        try:
-            # Extract the password from the validated data
-            password = validated_data.pop('password')
-            # Create a new user instance
-            user = User.objects.create_user(password=password, **validated_data)
-            return user
-        except Exception as e:
-            # Handle any exceptions that might occur during user creation
-            raise serializers.ValidationError({'error': str(e)})
+        validated_data.pop('password2')  # Remove password2 from validated_data
+        user = User.objects.create_user(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 # ######################################################
 

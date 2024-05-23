@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -7,39 +6,48 @@ import {
   ScrollView,
   StatusBar,
   SafeAreaView,
+  FlatList,
 } from "react-native";
 import AppBars from "../Bar/appBar";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
-//
+// Components
 import SearchBar from "./searchBar";
-//
-
-// components
 import FeaturedProducts from "./featuredProducts";
 import FastSales from "./fastSales";
 
-//
-
 const HomeScreen = () => {
-// 
+  const navigation = useNavigation();
   const [products, setProducts] = useState([]);
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://192.168.229.132:8000/signin/");
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const token = useSelector((state) => state.auth.token);
 
-  fetchData();
-}, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const response = await axios.get(
+            "http://192.168.229.132:8000/productlist",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setProducts(response.data);
+        } else {
+          console.error("Please log in.");
+          navigation.navigate("login");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
+    fetchData();
+  }, [token]);
 
-
-
-  // 
   return (
     <View style={styles.container}>
       <AppBars />
@@ -81,14 +89,9 @@ const styles = StyleSheet.create({
     fontSize: 42,
     color: "black",
   },
-
   headerTxt: {
     fontSize: 30,
   },
 });
 
 export default HomeScreen;
-
-// login screen does nothing to wrong password
-// search screen
-// appbar config

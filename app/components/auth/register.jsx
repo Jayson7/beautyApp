@@ -15,9 +15,8 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
-//
 const image = require("../../assets/3.jpg");
-//
+
 export default function Register() {
   const navigation = useNavigation();
 
@@ -30,30 +29,30 @@ export default function Register() {
   const [email, setEmail] = useState("");
 
   const handleRegister = () => {
-    // Add your authentication logic here
-    console.log("Submit button pressed");
     if (password === password2) {
       axios
         .post("http://192.168.229.132:8000/signup/", {
           username: username,
           email: email,
           password: password,
+          password2: password2,
           full_name: full_name,
           phone_number: phone_number,
+          country: country,
         })
         .then((response) => {
-          // Handle successful sign-up
           navigation.navigate("login");
           Alert.alert("Sign-up successful", "You can now login.");
         })
         .catch((error) => {
-          // Handle error
-          Alert.alert("Sign-up failed", "Please try again later.");
+          Alert.alert(
+            "Sign-up failed",
+            error.response.data.error || "Please try again later."
+          );
         });
     } else {
       Alert.alert("Sign-up failed", "Password Mismatch.");
     }
-    // confrim password and password 2
   };
 
   return (
@@ -64,7 +63,6 @@ export default function Register() {
     >
       <ImageBackground source={image} style={styles.container}>
         <View style={styles.containerContent}>
-          {/* ########  logo section */}
           <View style={styles.logoLogin}></View>
           <Image
             style={styles.Logo}
@@ -72,9 +70,7 @@ export default function Register() {
               uri: "https://res.cloudinary.com/jaytech/image/upload/v1704910436/Beauty_App_prwcqb.png",
             }}
           />
-          {/* ends */}
           <Text style={styles.heading}>Create an account</Text>
-          {/* full name input with icon */}
           <View style={styles.inputContainer}>
             <Icon name="user" size={20} color="gold" style={styles.icon} />
             <TextInput
@@ -85,7 +81,6 @@ export default function Register() {
               value={full_name}
             />
           </View>
-          {/* Username input with icon */}
           <View style={styles.inputContainer}>
             <Icon name="user" size={20} color="gold" style={styles.icon} />
             <TextInput
@@ -96,7 +91,6 @@ export default function Register() {
               value={username}
             />
           </View>
-          {/* Password input with icon */}
           <View style={styles.inputContainer}>
             <Icon name="lock" size={20} color="gold" style={styles.icon} />
             <TextInput
@@ -130,7 +124,6 @@ export default function Register() {
               value={email}
             />
           </View>
-
           <View style={styles.inputContainer}>
             <Icon name="lock" size={20} color="gold" style={styles.icon} />
             <TextInput
@@ -168,7 +161,6 @@ export default function Register() {
             Sign up
           </Button>
         </View>
-        {/* #################### user exist */}
         <View style={styles.userExist}>
           <Text style={styles.loginText}>Already have an account?</Text>
           <TouchableOpacity
@@ -178,7 +170,6 @@ export default function Register() {
             <Text style={styles.signupText}>Sign in</Text>
           </TouchableOpacity>
         </View>
-        {/* ends */}
       </ImageBackground>
     </ScrollView>
   );
@@ -202,7 +193,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.6)",
   },
-
   heading: {
     fontSize: 24,
     marginBottom: 20,
@@ -226,19 +216,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
-
-  loginButton: {
-    backgroundColor: "#bd6513",
-    padding: 10,
-    borderRadius: 5,
-    width: "50%",
-    marginTop: 30,
-    marginBottom: 30,
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
-  },
   userExist: {
     flexDirection: "row",
     height: 130,
@@ -246,15 +223,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#000",
-    borderColor: "green", // Set the border color for the random View
+    borderColor: "green",
     borderWidth: 1,
     borderRadius: 10,
-    // flex: 1,
   },
   loginText: {
     color: "white",
     marginBottom: 70,
-
     justifyContent: "center",
     alignItems: "center",
   },
