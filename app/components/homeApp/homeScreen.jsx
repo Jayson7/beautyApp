@@ -13,7 +13,7 @@ import AppBars from "../Bar/appBar";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
+import { Button } from "react-native-paper";
 // Components
 import SearchBar from "./searchBar";
 // ############################# Fast sales ########################
@@ -87,8 +87,20 @@ const FastSales = () => {
                 source={{ uri: item.image_url }}
               />
             </View>
-            <Text>{item.name}</Text>
-            <Text>{item.price}</Text>
+            <View style={styles.productDescription}>
+              <Text style={{ fontSize: 20 }}>{item.name}</Text>
+              <Text style={{}}>{item.price}</Text>
+            </View>
+
+            <View>
+              <Button
+                icon="camera"
+                mode="contained"
+                onPress={() => console.log("Pressed")}
+              >
+                Press me
+              </Button>
+            </View>
           </View>
         ))}
       </ScrollView>
@@ -236,8 +248,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: "#D8DAD3",
     borderRadius: 5,
-    width: 200,
-    height: 250,
+    width: 190,
+    height: 300,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -264,6 +276,9 @@ const styles = StyleSheet.create({
     margin: 0,
     marginTop: -13,
     height: 200,
+  },
+  productDescription: {
+    flexDirection: "column",
   },
 });
 
