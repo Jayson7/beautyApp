@@ -278,7 +278,10 @@ const styles = StyleSheet.create({
     height: 200,
   },
   productDescription: {
-    flexDirection: "column",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    width: "100%",
   },
 });
 
