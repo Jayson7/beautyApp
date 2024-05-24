@@ -21,7 +21,7 @@ const SearchBar = () => {
         onChangeText={setSearchQuery}
         value={searchQuery}
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#DFF3E4",
           borderRadius: 20,
           width: "75%",
         }}
