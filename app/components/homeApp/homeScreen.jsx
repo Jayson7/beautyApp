@@ -75,8 +75,17 @@ const FastSales = () => {
       >
         {fastproducts.map((item) => (
           <View key={item.id} style={styles.productBox}>
-            <View style={{ height: "70%", width: "100%" }}>
-              <Image style={styles.tinyLogo} source={{ uri: item.image_url }} />
+            <View
+              style={{
+                width: "100%",
+                alignItems: "top",
+                justifyContent: "top",
+              }}
+            >
+              <Image
+                style={styles.productImage}
+                source={{ uri: item.image_url }}
+              />
             </View>
             <Text>{item.name}</Text>
             <Text>{item.price}</Text>
@@ -222,25 +231,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   productBox: {
-    padding: 10,
-    margin: 10,
+    padding: 0,
+    marginHorizontal: 5,
+    marginVertical: 10,
     backgroundColor: "#D8DAD3",
     borderRadius: 5,
-    width: 170,
-    height: 230,
+    width: 200,
+    height: 250,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 30,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
   productsContainer: {
-    paddingVertical: 20,
+    paddingVertical: 0,
   },
   containerFast: {
     flex: 1,
@@ -248,6 +258,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
     marginBottom: 20,
+  },
+  productImage: {
+    width: "98%",
+    margin: 0,
+    marginTop: -13,
+    height: 200,
   },
 });
 
