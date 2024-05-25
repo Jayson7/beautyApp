@@ -31,7 +31,7 @@ export default function Register() {
   const handleRegister = () => {
     if (password === password2) {
       axios
-        .post("http://192.168.229.132:8000/signup/", {
+        .post("http://10.0.2.2:8000/signup/", {
           username: username,
           email: email,
           password: password,

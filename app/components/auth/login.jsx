@@ -41,7 +41,7 @@ export default function Login() {
     console.log("Password:", password);
 
     axios
-      .post("http://192.168.229.132:8000/signin/", {
+      .post("http://10.0.2.2:8000/signin/", {
         username: username,
         password: password,
       })
@@ -58,12 +58,6 @@ export default function Login() {
       })
       .catch(function (error) {
         console.log(error);
-        Alert.alert(
-          "Wrong credentials",
-
-          [{ text: "OK" }],
-          { cancelable: false }
-        );
       });
   };
   return (

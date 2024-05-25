@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-_fzf=d4qu_rj6^s=#u2eivzqrp3pufur)cnyorc09i+$hd+$w*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2', '192.168.229.132']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2', '192.168.229.132', '192.168.183.232']
 
 # remove slash
 

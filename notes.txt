@@ -1,8 +1,12 @@
 rm -rf ./node_modules/expo/node_modules/expo-font/
 
 
+colors 
+#171738
+gold
+
 task:
-problem with sign up from external devices
+problem with sign up from external devices   (solved: can only happen if ip address is reporting to network ip)
 put all product out both featured and fast then others
 correct login failed and redesign login pop up 
 
@@ -14,3 +18,8 @@ correct login failed and redesign login pop up
 pending task 
 
 the current task is to log user out after token expiration,refresh it.
+
+
+general notice
+
+all ip mus be used at 10.0.2.2

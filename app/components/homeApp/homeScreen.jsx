@@ -27,14 +27,11 @@ const FastSales = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.229.132:8000/fastproducts",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("http://10.0.2.2:8000/fastproducts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setFastProducts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -51,7 +48,13 @@ const FastSales = () => {
   }, [token]);
 
   return (
-    <View style={{ paddingHorizontal: 2, alignItems: "center" }}>
+    <View
+      style={{
+        paddingHorizontal: 2,
+        alignItems: "center",
+        marginVertical: 60,
+      }}
+    >
       <View style={styles.header}>
         <Text
           style={{
@@ -88,17 +91,31 @@ const FastSales = () => {
               />
             </View>
             <View style={styles.productDescription}>
-              <Text style={{ fontSize: 20 }}>{item.name}</Text>
-              <Text style={{}}>{item.price}</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "latp-reg",
+                  textTransform: "capitalize",
+                }}
+              >
+                {item.name}
+              </Text>
+              <Text style={{}}>{item.price} Naira</Text>
             </View>
 
             <View>
               <Button
-                icon="camera"
+                icon="shopping-outline"
                 mode="contained"
+                style={{
+                  marginBottom: 15,
+                  borderRadius: 10,
+                  backgroundColor: "#171738",
+                  color: "#DFF3E4",
+                }}
                 onPress={() => console.log("Pressed")}
               >
-                Press me
+                Add to Cart
               </Button>
             </View>
           </View>
@@ -117,14 +134,11 @@ const FeaturedProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.229.132:8000/fproducts",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("http://10.0.2.2:8000/fproducts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -152,8 +166,46 @@ const FeaturedProducts = () => {
       >
         {products.map((item) => (
           <View key={item.id} style={styles.productBox}>
-            <Text>{item.name}</Text>
-            <Text>{item.price}</Text>
+            <View
+              style={{
+                width: "100%",
+                alignItems: "top",
+                justifyContent: "top",
+              }}
+            >
+              <Image
+                style={styles.productImage}
+                source={{ uri: item.image_url }}
+              />
+            </View>
+            <View style={styles.productDescription}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "latp-reg",
+                  textTransform: "capitalize",
+                }}
+              >
+                {item.name}
+              </Text>
+              <Text style={{}}>{item.price} Naira</Text>
+            </View>
+
+            <View>
+              <Button
+                icon="shopping-outline"
+                mode="contained"
+                style={{
+                  marginBottom: 15,
+                  borderRadius: 10,
+                  backgroundColor: "#171738",
+                  color: "#DFF3E4",
+                }}
+                onPress={() => console.log("Pressed")}
+              >
+                Add to Cart
+              </Button>
+            </View>
           </View>
         ))}
       </ScrollView>
@@ -170,14 +222,11 @@ const HomeScreen = () => {
     const fetchData = async () => {
       try {
         if (token) {
-          const response = await axios.get(
-            "http://192.168.229.132:8000/productlist",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const response = await axios.get("http://10.0.2.2:8000/productlist", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           setProducts(response.data);
         } else {
           console.error("Please log in.");
@@ -201,13 +250,6 @@ const HomeScreen = () => {
           <FastSales />
           <View style={styles.productsContainer}>
             <Text>Products</Text>
-            {products.map((item) => (
-              <View key={item.id} style={styles.productBox}>
-                <Text>{item.name}</Text>
-                <Text>{item.price}</Text>
-                {/* Render other product fields as needed */}
-              </View>
-            ))}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -229,7 +271,14 @@ const styles = StyleSheet.create({
     color: "black",
   },
   headerTxt: {
-    fontSize: 30,
+    fontSize: 20,
+    fontFamily: "ubuntu-italic-bold",
+    color: "#566246",
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 20,
   },
   containerFeaturedProd: {
     paddingHorizontal: 2,
@@ -246,10 +295,10 @@ const styles = StyleSheet.create({
     padding: 0,
     marginHorizontal: 5,
     marginVertical: 10,
-    backgroundColor: "#D8DAD3",
+    backgroundColor: "#fff",
     borderRadius: 5,
     width: 190,
-    height: 300,
+    height: 310,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -272,16 +321,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   productImage: {
-    width: "98%",
+    width: "100%",
     margin: 0,
-    marginTop: -13,
-    height: 200,
+
+    height: 198,
   },
   productDescription: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
     width: "100%",
+    marginTop: 10,
+    marginBottom: 5,
   },
 });
 
