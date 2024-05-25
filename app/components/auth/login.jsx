@@ -58,6 +58,12 @@ export default function Login() {
       })
       .catch(function (error) {
         console.log(error);
+        Alert.alert(
+          "Wrong credentials",
+
+          [{ text: "OK" }],
+          { cancelable: false }
+        );
       });
   };
   return (
