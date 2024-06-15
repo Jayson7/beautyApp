@@ -15,12 +15,21 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import StarRating from 'react-native-star-rating';
 // Components
 import SearchBar from "./searchBar";
 // ############################# Fast sales ########################
 
 const FastSales = () => {
+  // star rating
+    
+  const [rating, setRating] = useState(3.5);
+  
+    const onStarRatingPress = (rating) => {
+      setRating(rating);}
+  //  start rating ends here
+
+  
   const navigation = useNavigation();
 
   const [fastproducts, setFastProducts] = useState([]);
@@ -62,7 +71,7 @@ const FastSales = () => {
           style={{
             fontSize: 27,
             fontFamily: "ubuntu-italic-bold",
-            color: "#566246",
+            color: "#000",
             marginBottom: 15,
           }}
         >
@@ -99,6 +108,17 @@ const FastSales = () => {
                 {item.name}
               </Text>
               <Text style={{}}>{item.price} Naira</Text>
+             
+              <View style={styles.containerStar}>
+              <StarRating
+        disabled={false}
+        maxStars={5}
+        rating={rating}
+        selectedStar={(rating) => onStarRatingPress(rating)}
+        fullStarColor={'gold'}
+        starSize={20} // Set the star size here
+      />
+    </View>
             </View>
 
             <View>
@@ -125,6 +145,14 @@ const FastSales = () => {
 
 //#################################### featured products ##############################################
 const FeaturedProducts = () => {
+    // star rating
+    
+    const [rating, setRating] = useState(3.5);
+  
+    const onStarRatingPress = (rating) => {
+      setRating(rating);}
+  //  start rating ends here
+
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
   const token = useSelector((state) => state.auth.access);
@@ -187,6 +215,16 @@ const FeaturedProducts = () => {
                 {item.name}
               </Text>
               <Text style={{}}>{item.price} Naira</Text>
+              <View style={styles.containerStar}>
+              <StarRating
+        disabled={false}
+        maxStars={5}
+        rating={rating}
+        selectedStar={(rating) => onStarRatingPress(rating)}
+        fullStarColor={'gold'}
+        starSize={20} // Set the star size here
+      />
+    </View>
             </View>
 
             <View>
@@ -256,12 +294,23 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // 
+  containerStar: {
+marginVertical:5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    fontSize: 18, // Set the font size here
+    marginTop: 10,
+  },
+  // 
   container: {
     flex: 1,
     backgroundColor: "#171738",
   },
   mainsContainer: {
-    backgroundColor: "#DFF3E4",
+    backgroundColor: "#fff",
     paddingTop: StatusBar.currentHeight,
   },
   
@@ -315,7 +364,7 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 0,
     objectFit:'contain',
-    height: 120,
+    height: 90,
   },
   productDescription: {
     flexDirection: "column",

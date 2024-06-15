@@ -13,7 +13,7 @@ const ToggleButtonMenu = () => {
       icon="menu"
       value="menu"
       status={status}
-      size={35}
+      size={27}
       style={{ backgroundColor: "gold" }}
       onPress={menuTogger}
     />

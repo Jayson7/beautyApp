@@ -14,9 +14,9 @@ const AppBars = ({ navigation }) => {
       style={{
         borderBottomWidth: 0,
         borderRadius: 0,
-        backgroundColor: "#DFF3E4",
-        paddingTop: 30,
-        marginBottom: 20,
+        backgroundColor: "#fff",
+        paddingTop: 10,
+        marginBottom: 5,
         color: "#fff",
       }}
     >
@@ -34,7 +34,7 @@ const AppBars = ({ navigation }) => {
 
         <Appbar.Action
           icon="cart"
-          size={20}
+          size={15}
           onPress={""}
           style={{ backgroundColor: "gold" }}
         />
