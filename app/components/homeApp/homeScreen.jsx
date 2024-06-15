@@ -8,12 +8,14 @@ import {
   SafeAreaView,
   Alert,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import AppBars from "../Bar/appBar";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Components
 import SearchBar from "./searchBar";
 // ############################# Fast sales ########################
@@ -52,20 +54,16 @@ const FastSales = () => {
       style={{
         paddingHorizontal: 2,
         alignItems: "center",
-        marginVertical: 60,
+        marginVertical: 30,
       }}
     >
       <View style={styles.header}>
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 27,
             fontFamily: "ubuntu-italic-bold",
             color: "#566246",
-            backgroundColor: "#fff",
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            borderRadius: 10,
-            marginVertical: 20,
+            marginBottom: 15,
           }}
         >
           Fast Sales
@@ -125,7 +123,7 @@ const FastSales = () => {
   );
 };
 
-//##################################### featured products ##############################################
+//#################################### featured products ##############################################
 const FeaturedProducts = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
@@ -266,19 +264,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#DFF3E4",
     paddingTop: StatusBar.currentHeight,
   },
-  text: {
-    fontSize: 42,
-    color: "black",
-  },
+  
   headerTxt: {
-    fontSize: 20,
+    fontSize: 27,
     fontFamily: "ubuntu-italic-bold",
-    color: "#566246",
-    backgroundColor: "#fff",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginVertical: 20,
+    color: "#000",
+    marginVertical: 5,
   },
   containerFeaturedProd: {
     paddingHorizontal: 2,
@@ -294,11 +285,11 @@ const styles = StyleSheet.create({
   productBox: {
     padding: 0,
     marginHorizontal: 5,
-    marginVertical: 10,
+    marginVertical: 5,
     backgroundColor: "#fff",
     borderRadius: 5,
-    width: 190,
-    height: 310,
+    width: 170,
+    height: 253,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -323,8 +314,8 @@ const styles = StyleSheet.create({
   productImage: {
     width: "100%",
     margin: 0,
-
-    height: 198,
+    objectFit:'contain',
+    height: 120,
   },
   productDescription: {
     flexDirection: "column",
